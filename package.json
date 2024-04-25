@@ -1,0 +1,19 @@
+{
+  "name": "e2e-with-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint cypress/**/*.js && eslint cypress.config.js",
+    "lint:fix": "eslint cypress/**/*.js --fix && eslint cypress.config.js --fix"
+  },
+  "keywords": [],
+  "author": "Gabriel Rapucci Gonzalez <gabrielrapuccigonzalez14@hotmail.com> (https://gabrielrapucci.com.br)",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^12.15.0",
+    "eslint": "^8.43.0",
+    "eslint-plugin-cypress": "^2.13.3"
+  }
+}
