@@ -34,3 +34,48 @@ Cypress.Commands.add("sessionLogin", (
 	const login = () => cy.guiLogin(username, password)
 	cy.session(username, login)
 })
+
+Cypress.Commands.add("createNote", (note, filePath = null) => {
+	cy.visit("/notes/new")
+
+	cy.get("#content").type(note)
+	if (filePath) cy.get("#file").selectFile(filePath)
+	cy.contains("button", "Create").click()
+
+	cy.contains(".list-group-item", note).should("be.visible")
+})
+
+Cypress.Commands.add("editNote", (note, newNoteValue, filePath = null) => {
+	cy.intercept("GET", "**/notes/**").as("getNote")
+
+	cy.contains(".list-group-item", note).click()
+	cy.wait("@getNote")
+
+	cy.get("#content")
+		.as("contentField")
+		.clear()
+	cy.get("@contentField")
+		.type(newNoteValue)
+
+	if (filePath) cy.get("#file").selectFile(filePath)
+
+	cy.contains("button", "Save").click()
+
+	cy.contains(".list-group-item", newNoteValue).should("be.visible")
+	cy.contains(".list-group-item", note).should("not.exist")
+})
+
+Cypress.Commands.add("deleteNote", note => {
+	cy.intercept("GET", "**/notes/**").as("getNote")
+
+	cy.contains(".list-group-item", note).click()
+	cy.wait("@getNote")
+
+	cy.contains("button", "Delete").click()
+
+	cy.get(".list-group-item")
+		.its("length")
+		.should("be.at.least", 1)
+	cy.contains(".list-group-item", note)
+		.should("not.exist")
+})
