@@ -22,14 +22,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run end-to-end tests on desktop viewport 🧪
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         env:
           CYPRESS_USER_EMAIL: ${{ secrets.CYPRESS_USER_EMAIL }}
           CYPRESS_USER_PASSWORD: ${{ secrets.CYPRESS_USER_PASSWORD }}
           CYPRESS_MAILOSAUR_SERVER_ID: ${{ secrets.CYPRESS_MAILOSAUR_SERVER_ID }}
-          CYPRESS_MAILOSAUR_API_KEY: ${{ secrets.CYPRESS_MAILOSAUR_API_KEY }}
+          CYPRESS_MAILOSAUR_API_KEY: ${{ secrets.CYPRESS_MAILOSAUR_API_KEY }},
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }},
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          command: npm test
+          command: npm run test:cloud
   cypress-tests-mobile:
     needs: eslint
     runs-on: ubuntu-latest
@@ -37,9 +39,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run end-to-end tests on mobile viewport 🧪
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         env:
           CYPRESS_USER_EMAIL: ${{ secrets.CYPRESS_USER_EMAIL }}
-          CYPRESS_USER_PASSWORD: ${{ secrets.CYPRESS_USER_PASSWORD }}
+          CYPRESS_USER_PASSWORD: ${{ secrets.CYPRESS_USER_PASSWORD }},
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }},
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          command: npm run test:mobile
+          command: npm run test:mobile:cloud
