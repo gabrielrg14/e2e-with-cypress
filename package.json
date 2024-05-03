@@ -9,9 +9,7 @@
     "cy:open": "cypress open",
     "cy:open:mobile": "cypress open --config viewportWidth=767,viewportHeight=480",
     "test": "cypress run",
-    "test:cloud": "cypress run --record --key --tag 'desktop'",
-    "test:mobile": "cypress run --config viewportWidth=767,viewportHeight=480 --spec cypress/e2e/authenticated.cy.js",
-    "test:mobile:cloud": "cypress run --record --key --tag 'mobile' --config viewportWidth=767,viewportHeight=480 --spec cypress/e2e/authenticated.cy.js --env grepTags=@desktop-and-mobile,grepOmitFiltered=true"
+    "test:mobile": "cypress run --config viewportWidth=767,viewportHeight=480 --spec cypress/e2e/authenticated.cy.js"
   },
   "keywords": [],
   "author": "Gabriel Rapucci Gonzalez <gabrielrapuccigonzalez14@hotmail.com> (https://gabrielrapucci.com.br)",
