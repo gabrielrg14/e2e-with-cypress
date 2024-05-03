@@ -11,12 +11,13 @@
     "test": "cypress run",
     "test:cloud": "cypress run --record --tag 'desktop'",
     "test:mobile": "cypress run --config viewportWidth=767,viewportHeight=480 --spec cypress/e2e/authenticated.cy.js",
-    "test:mobile:cloud": "cypress run --record --tag 'mobile' --config viewportWidth=767,viewportHeight=480 --spec cypress/e2e/authenticated.cy.js"
+    "test:mobile:cloud": "cypress run --record --tag 'mobile' --config viewportWidth=767,viewportHeight=480 --spec cypress/e2e/authenticated.cy.js --env grepTags=@desktop-and-mobile,grepOmitFiltered=true"
   },
   "keywords": [],
   "author": "Gabriel Rapucci Gonzalez <gabrielrapuccigonzalez14@hotmail.com> (https://gabrielrapucci.com.br)",
   "license": "MIT",
   "devDependencies": {
+    "@cypress/grep": "^3.1.5",
     "@faker-js/faker": "^8.0.2",
     "cypress": "^12.15.0",
     "cypress-iframe": "^1.0.1",
