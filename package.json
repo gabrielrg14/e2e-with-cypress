@@ -1,7 +1,7 @@
 {
   "name": "e2e-with-cypress",
   "version": "1.0.0",
-  "description": "",
+  "description": "A project to practice end-to-end (e2e) tests written with Cypress running on GitHub Actions.",
   "main": "cypress.config.js",
   "scripts": {
     "lint": "eslint cypress/**/*.js && eslint cypress.config.js",
